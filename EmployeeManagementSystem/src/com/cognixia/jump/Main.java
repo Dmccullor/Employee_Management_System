@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import com.cognixia.jump.exceptions.EmployeeNotFoundException;
 import com.cognixia.jump.model.Employee;
@@ -31,7 +32,7 @@ import com.cognixia.jump.util.EmployeeManagerInMemory;
  * */
 
 public class Main {
-
+	
 	private static EmployeeManager manager;
 	private static Scanner sc;
 
@@ -87,6 +88,7 @@ public class Main {
 
 				default:
 					System.out.println("\nPlease enter a number between 1 and 6");
+					promptContinue();
 					break;
 				}
 
@@ -97,9 +99,12 @@ public class Main {
 			} catch (InputMismatchException e) {
 				sc.nextLine();
 				System.out.println("\nPlease enter a number between 1 and 6");
+				promptContinue();
+				
 				
 			} catch (EmployeeNotFoundException e) {
 				System.out.println(e.getMessage());
+				promptContinue();
 			}
 
 		}
@@ -145,6 +150,7 @@ public class Main {
 			} catch(InputMismatchException e) {
 				sc.nextLine();
 				System.out.println("Enter number between 1 and 3");
+				promptContinue();
 			}
 		}
 		
@@ -174,6 +180,7 @@ public class Main {
 			
 		} catch(InputMismatchException e) {
 			System.out.println("Input Invalid. Please try again.");
+			promptContinue();
 			inputDepartment();
 		}
 	}
@@ -193,6 +200,8 @@ public class Main {
 		} catch(InputMismatchException e) {
 			
 			System.out.println("Invalid Input. Please try again.");
+			
+			promptContinue();
 			
 			selectEmployeeById();
 		}
@@ -222,6 +231,7 @@ public class Main {
 			manager.createEmployee(newEmp);
 		} catch(InputMismatchException e) {
 			System.out.println("Input Invalid. Please start over and try again");
+			promptContinue();
 			createNewEmployee();
 		}
 	}
@@ -239,6 +249,7 @@ public class Main {
 			
 		} catch(InputMismatchException e) {
 			System.out.println("Input invalid. Please start over and try again.");
+			promptContinue();
 			deleteEmployee();
 		}
 		
@@ -309,7 +320,14 @@ public class Main {
 			} 
 		} catch(InputMismatchException e) {
 			System.out.println("Invalid Input. Please start over and try again.");
+			promptContinue();
 			updateEmployee();
-		}
+		}	
+
+	}
+	
+	public static void promptContinue() {
+		   System.out.println("Press any key to continue...");
+		   sc.nextLine();
 	}
 }
