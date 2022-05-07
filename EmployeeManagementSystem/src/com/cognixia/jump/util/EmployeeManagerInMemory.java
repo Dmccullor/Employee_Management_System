@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.cognixia.jump.Main;
 import com.cognixia.jump.exceptions.EmployeeNotFoundException;
 import com.cognixia.jump.model.Employee;
 
@@ -79,6 +80,10 @@ public class EmployeeManagerInMemory implements EmployeeManager {
 				employeeList.remove(e);
 				
 				employeeList.add(empl);
+				
+				System.out.println("Employee updated.");
+				
+				Main.promptContinue();
 				}
 			}
 		return false;

@@ -1,5 +1,6 @@
 package com.cognixia.jump;
 
+import java.util.ConcurrentModificationException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
@@ -105,6 +106,9 @@ public class Main {
 			} catch (EmployeeNotFoundException e) {
 				System.out.println(e.getMessage());
 				promptContinue();
+			
+			} catch(ConcurrentModificationException e) {
+				
 			}
 
 		}
@@ -260,7 +264,7 @@ public class Main {
 	public static void updateEmployee() throws EmployeeNotFoundException {
 
 		try {
-			System.out.println("Please enter the ID of the employee that you want to update");
+			System.out.println("Please enter the ID of the employee that you want to update...");
 			int empId = sc.nextInt();
 			sc.nextLine();
 			
@@ -270,17 +274,17 @@ public class Main {
 			while(true) {
 					
 				System.out.println("Please select what you would like to update:" +
-									"1. \nName" +
-									"2. \nDepartment" +
-									"3. \nSalary" +
-									"4. \nEmail" +
-									"5. \nReturn to Main Menu");
+									"\n1. Name" +
+									"\n2. Department" +
+									"\n3. Salary" +
+									"\n4. Email" +
+									"\n5. Return to Main Menu");
 				int option = sc.nextInt();
 				sc.nextLine();
 				
 				switch(option) {
 				case 1:
-					System.out.println("Please enter the updated name.");
+					System.out.println("Please enter the updated name...");
 					String newName = sc.nextLine();
 					emp.setName(newName);
 					manager.updateEmployee(emp);
@@ -323,7 +327,7 @@ public class Main {
 	}
 	
 	public static void promptContinue() {
-		   System.out.println("Press any key to continue...");
+		   System.out.println("Press <ENTER> to continue...");
 		   sc.nextLine();
 	}
 }
