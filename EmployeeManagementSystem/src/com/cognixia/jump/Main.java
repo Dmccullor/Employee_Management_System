@@ -264,21 +264,17 @@ public class Main {
 			int empId = sc.nextInt();
 			sc.nextLine();
 			
-			Employee emplObj = manager.findEmployeeById(empId);
-			int emplId = emplObj.getId();
-			String emplName = emplObj.getName();
-			String emplDept = emplObj.getDepartment();
-			int emplSalary = emplObj.getSalary();
-			String emplEmail = emplObj.getEmail();
+			Employee emp = manager.findEmployeeById(empId);
+
 			
 			while(true) {
 					
 				System.out.println("Please select what you would like to update:" +
-									"1. Name" +
-									"2. Department" +
-									"3. Salary" +
-									"4. Email" +
-									"5. Return to Main Menu");
+									"1. \nName" +
+									"2. \nDepartment" +
+									"3. \nSalary" +
+									"4. \nEmail" +
+									"5. \nReturn to Main Menu");
 				int option = sc.nextInt();
 				sc.nextLine();
 				
@@ -286,27 +282,27 @@ public class Main {
 				case 1:
 					System.out.println("Please enter the updated name.");
 					String newName = sc.nextLine();
-					Employee newNameEmpl = new Employee(emplId, newName, emplDept, emplSalary, emplEmail);
-					manager.updateEmployee(newNameEmpl);
+					emp.setName(newName);
+					manager.updateEmployee(emp);
 					break;
 				case 2:
 					System.out.println("Please enter the udpated department.");
 					String newDept = sc.nextLine();
-					Employee newDeptEmpl = new Employee(emplId, emplName, newDept, emplSalary, emplEmail);
-					manager.updateEmployee(newDeptEmpl);
+					emp.setDepartment(newDept);
+					manager.updateEmployee(emp);
 					break;
 				case 3:
 					System.out.println("Please enter the updated salary.");
 					int newSalary = sc.nextInt();
 					sc.nextLine();
-					Employee newSalaryEmpl = new Employee(emplId, emplName, emplDept, newSalary, emplEmail);
-					manager.updateEmployee(newSalaryEmpl);
+					emp.setSalary(newSalary);
+					manager.updateEmployee(emp);
 					break;
 				case 4:
 					System.out.println("Please enter the updated email address.");
 					String newEmail = sc.nextLine();
-					Employee newEmailEmpl = new Employee(emplId, emplName, emplDept, emplSalary, newEmail);
-					manager.updateEmployee(newEmailEmpl);
+					emp.setEmail(newEmail);
+					manager.updateEmployee(emp);
 					break;
 				case 5:
 					break;
